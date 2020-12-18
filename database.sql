@@ -6,6 +6,7 @@ CREATE TABLE "movies" (
 );
 
 -- movies can have multiple genres
+
 CREATE TABLE "genres" (
   "id" SERIAL PRIMARY KEY,
   "name" VARCHAR(80) NOT NULL
@@ -17,11 +18,21 @@ CREATE TABLE "genres" (
 -- This table will need to be populated with some data as well (INSERTS)
 -- Recall that this Junction Table will just be a table of ids!
 
+CREATE TABLE "movie_genre" (
+  "id" SERIAL PRIMARY KEY,
+  "movie_id" INT REFERENCES "movies",
+  "genre_id" INT REFERENCES "genres"
+);
 
+
+INSERT INTO "movie_genre" ("movie_id", "genre_id")
+VALUES (1, 8), (1, 11);
+ 
 
 --------[ DATA! ]---------
 
 -- starter movies
+
 INSERT INTO "movies" ("title", "poster", "description")
 VALUES 
 ('Avatar', 'images/avatar.jpeg', 'Avatar (marketed as James Cameron''s Avatar) is a 2009 American epic science fiction film directed, written, produced, and co-edited by James Cameron, and stars Sam Worthington, Zoe Saldana, Stephen Lang, Michelle Rodriguez, and Sigourney Weaver. The film is set in the mid-22nd century, when humans are colonizing Pandora, a lush habitable moon of a gas giant in the Alpha Centauri star system, in order to mine the mineral unobtanium, a room-temperature superconductor. The expansion of the mining colony threatens the continued existence of a local tribe of Na''vi – a humanoid species indigenous to Pandora. The film''s title refers to a genetically engineered Na''vi body operated from the brain of a remotely located human that is used to interact with the natives of Pandora.'),
@@ -42,6 +53,10 @@ VALUES
 -- starter genres
 INSERT INTO "genres" ("name")
 VALUES 
+('Documentary'),
+('Thriller'),
+('Horror'),
+('Action'),
 ('Adventure'),
 ('Animated'),
 ('Biographical'),

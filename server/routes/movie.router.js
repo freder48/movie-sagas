@@ -39,4 +39,35 @@ router.post('/', (req, res) => {
   })
 })
 
+//GET ALL MOVIES
+router.get('/', (req, res) => {
+  // Get all of the movies from the database
+  const sqlText = `SELECT * FROM movies ORDER BY title`;
+  //pool is the database, here we are sending the query to the database, running a query similar to a command in Postico
+  pool.query(sqlText)
+      .then((result) => {
+          res.send(result.rows); 
+      })
+      .catch((error) => {s
+          console.log(`Error making database query in GET ${sqlText}`, error);
+          res.sendStatus(500);
+      });   
+}); // END GET Route
+
+//GET ALL MOVIES
+router.get('/:id', (req, res) => {
+  let id = req.params.id;
+  // Get all of the movies from the database
+  const sqlText = `SELECT * FROM movies ORDER BY title WHERE id=$1`;
+  //pool is the database, here we are sending the query to the database, running a query similar to a command in Postico
+  pool.query(sqlText)
+      .then((result) => {
+          res.send(result.rows); 
+      })
+      .catch((error) => {s
+          console.log(`Error making database query in GET ${sqlText}`, error);
+          res.sendStatus(500);
+      });   
+}); // END GET Route
+
 module.exports = router;

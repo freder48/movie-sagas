@@ -14,12 +14,12 @@ class App extends Component {
         <Router>
           <nav>
             <Link to="/">Home</Link>
+            <br></br>
+            <Link to="/form">Add Movie</Link>
           </nav>
 
-
-
           <Route exact path="/" component={Home}/>
-          <Route path="/detail" component={Detail}/>
+          <Route path="/detail/:id" component={Detail}/>
           <Route path="/form" component={movieForm}/>
           
         </Router>

@@ -9,10 +9,13 @@ import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 // Import saga middleware
 import createSagaMiddleware from 'redux-saga';
+import axios from 'axios';
+import { takeEvery, put } from 'redux-saga/effects';
 
 // Create the rootSaga generator function
 function* rootSaga() {
-
+    yield takeEvery('FETCH_MOVIES', fetchMovies)
+    yield takeEvery('FETCH_DETAILS', fetchDetails)
 }
 
 // Create sagaMiddleware
@@ -27,6 +30,35 @@ const movies = (state = [], action) => {
             return state;
     }
 }
+
+//start fetchMovies GET
+function* fetchDetails(action) {
+    try { 
+        const response = yield axios.get(`/api/movie/${action.payload}`)
+        // inside a saga, use 'put' to dispatch an action (no props)
+        // This is SET - update the redux store
+        // DON'T do another FETCH or you'll get an infinite loop
+        yield put ({ type: 'SET_MOVIES', payload: response.data});
+    } catch (error) {
+        console.log('error with movies get request', error);
+    }
+}//end fetchMovies
+
+//start fetchMovies GET
+function* fetchMovies() {
+    // Move GET request from App.js
+    console.log('in fetchMovies saga');
+    // Go to server, update redux store with data from server
+    try { 
+        const response = yield axios.get('/api/movie')
+        // inside a saga, use 'put' to dispatch an action (no props)
+        // This is SET - update the redux store
+        // DON'T do another FETCH or you'll get an infinite loop
+        yield put ({ type: 'SET_MOVIES', payload: response.data});
+    } catch (error) {
+        console.log('error with movies get request', error);
+    }
+}//end fetchMovies
 
 // Used to store the movie genres
 const genres = (state = [], action) => {
