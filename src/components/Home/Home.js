@@ -19,12 +19,11 @@ goToDetails = (id) => {
       <>
 
         <section>
-
         
         {this.props.reduxState.movies.map((item) =>
                 
-                <p key={item.id}>
-                    <img src={item.poster} alt="Movie Poster"></img>
+                <p className="card" key={item.id}>
+                    <img className="imageSize"src={item.poster} alt="Movie Poster"></img>
                     <br></br>
                     <button onClick={()=> this.goToDetails(item.id)}>{item.title}</button> 
                 </p>

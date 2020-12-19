@@ -9,7 +9,7 @@ class movieForm extends Component {
       title: '', 
       poster: '', 
       description: '',
-      genre: '', 
+      genre_id: '', 
     }
   }
 
@@ -47,7 +47,7 @@ class movieForm extends Component {
           <label>Description:</label>
           <textarea onChange={(event) => this.handleChange('description', event)} />
 
-          <select name="category" id="category" onChange={(event) => this.handleChange('genre', event)}>
+          <select name="category" id="category" onChange={(event) => this.handleChange('genre_id', event)}>
             <option>Select</option>
             <option value="1">Documentary</option>
             <option value="2">Thriller</option>
