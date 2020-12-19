@@ -39,7 +39,7 @@ class movieForm extends Component {
   render() {
     return (
       <div className="border">
-        <form id="colorForm">
+        <form>
           <label >Movie Title:</label>
           <input onChange={(event) => this.handleChange('title', event)} 
           type="text" />
@@ -80,7 +80,7 @@ class movieForm extends Component {
 
           <button className="button" 
           onClick={this.goToHome}>Cancel</button>
-  
+        
         </form>
 
       </div>

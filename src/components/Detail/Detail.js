@@ -4,7 +4,9 @@ import './Detail.css';
 
 class Detail extends Component {
 
-  goToEdit = () => {
+  goToEdit = (id) => {
+    this.props.dispatch({type: 'FETCH_DETAILS', payload: id})
+    
     this.props.history.push('/edit')
   }
 
@@ -22,8 +24,9 @@ class Detail extends Component {
               <div className="container">
                 <h3>{item.title}</h3>
                 <br></br>
+
                 {this.props.reduxState.genres.map((genre) =>
-                  <p className="genreList">
+                  <p key={genre.id} className="genreList">
                     {genre.name}
                   </p>
                 )}
@@ -32,7 +35,7 @@ class Detail extends Component {
               </div>
               <button 
               className="button"
-              onClick={this.goToEdit}>Edit</button>
+              onClick={() => this.goToEdit(item.id)}>Edit</button>
             </div>
 
           )}

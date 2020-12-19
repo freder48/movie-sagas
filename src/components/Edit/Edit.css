@@ -1,0 +1,23 @@
+.editContainer {
+    width: 80%;
+    height: 50vh;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    margin: auto;
+
+}
+
+.editInput {
+    width: 50em;
+    margin: 10px;
+}
+
+.editLabel {
+    text-align: center;
+    margin: auto;
+}
+
+.editBtn {
+    margin-right: 10px;
+}
