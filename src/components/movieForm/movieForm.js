@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import './movieForm.css';
 
 
 class movieForm extends Component {
@@ -35,18 +36,18 @@ class movieForm extends Component {
 
   render() {
     return (
-      <>
-        <h1>movieForm Component</h1>
-        <form>
-          <label >Movie:</label>
+      <div className="border">
+        <form id="colorForm">
+          <label >Movie Title:</label>
           <input onChange={(event) => this.handleChange('title', event)}type="text" />
-
+          
           <label>Poster URL:</label>
           <input onChange={(event) => this.handleChange('poster', event)} type="text" />
 
           <label>Description:</label>
           <textarea onChange={(event) => this.handleChange('description', event)} />
 
+          <label>Genre:</label>
           <select name="category" id="category" onChange={(event) => this.handleChange('genre_id', event)}>
             <option>Select</option>
             <option value="1">Documentary</option>
@@ -69,11 +70,11 @@ class movieForm extends Component {
 
           </select>
 
-          <button onClick={this.addMovie}>Submit</button>
+          <button className="button"onClick={this.addMovie}>Submit</button>
         </form>
-        <button onClick={this.goToHome}>Cancel</button>
+        <button className="button" onClick={this.goToHome}>Cancel</button>
         
-      </>
+      </div>
     );
   }
 }
