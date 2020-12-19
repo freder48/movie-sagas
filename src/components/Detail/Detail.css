@@ -40,5 +40,25 @@ h3 {
     text-align: center;
 }
 
+.button {
+    color: black !important;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: #ffe6cc;
+    padding: 10px;
+    border: 2px solid black !important;
+    display: inline-block;
+    transition: all 0.4s ease 0s;
+    width: 92%;
+    font-family: Copperplate;
+  }
+
+.button:hover {
+    color: #ffffff !important;
+    background: goldenrod;
+    border-color: #132639 !important;
+    transition: all 0.4s ease 0s;
+  }
+
 
 

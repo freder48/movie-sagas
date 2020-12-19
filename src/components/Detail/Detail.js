@@ -4,6 +4,10 @@ import './Detail.css';
 
 class Detail extends Component {
 
+  goToEdit = () => {
+    this.props.history.push('/edit')
+  }
+
   render() {
 
     return (
@@ -26,6 +30,9 @@ class Detail extends Component {
 
                 <p>{item.description}</p>
               </div>
+              <button 
+              className="button"
+              onClick={this.goToEdit}>Edit</button>
             </div>
 
           )}

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import './App.css';
-import Home from '../Home/Home'
-import Detail from '../Detail/Detail'
-import movieForm from '../movieForm/movieForm'
+import Home from '../Home/Home';
+import Detail from '../Detail/Detail';
+import movieForm from '../movieForm/movieForm';
+import Edit from '../Edit/Edit';
 
 class App extends Component {
   // Renders the entire app on the DOM
@@ -24,6 +25,7 @@ class App extends Component {
           <Route exact path="/" component={Home} />
           <Route path="/detail/:id" component={Detail} />
           <Route path="/form" component={movieForm} />
+          <Route path="/edit" component={Edit} />
 
         </Router>
       </div>
