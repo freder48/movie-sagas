@@ -1,42 +1,76 @@
+* {
+  background-image: url('../../img/paper.jpg')
+}
 .App {
   text-align: center;
 }
 
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+h1 {
+  padding-top: 50px;
+  margin-top: 100px;
+  font-size: 60px;
 }
 
-.App-title {
-  font-size: 1.5em;
+.appHeader {
+  font-family: "Montserrat";
+  text-align: center;
+  color: #FFF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 1px;
 }
 
-.App-intro {
-  font-size: large;
+h1 {
+  background-image: url(https://media.giphy.com/media/26BROrSHlmyzzHf3i/giphy.gif);
+  background-size: cover;
+  color: transparent;
+  -moz-background-clip: text;
+  -webkit-background-clip: text;
+  text-transform: uppercase;
+  font-size: 120px;
+  line-height: .75;
+  margin: 10px 0;
 }
+
+
+
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 
-.card {
-  border: 1px solid darkblue;
-  justify-self: auto;
-  border-radius: .5em;
+nav li {
+  list-style: none;
   display: inline-block;
-  width: 300px;
-  height: 300px;
-  text-align: center;
-  padding: .5em;
-  margin-right: 1rem;
-  margin-bottom: 1rem;
+  margin-right: 2em;
+  color: black;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
-.imageSize {
-  height: 300px;
-  width: 200px;
+.navBar {
+  padding-top: 1em;
+  padding-bottom: 1.5em;
+  margin-bottom: 2em;
+  
+}
+
+a:link{
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+  color: black;
+}
+
+a:active {
+  text-decoration: underline;
+  
+}
+
+a:hover {
+ color: #330033;
 }

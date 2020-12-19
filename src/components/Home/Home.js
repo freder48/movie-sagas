@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import './Home.css';
 
 class Home extends Component {
 
@@ -18,14 +19,14 @@ goToDetails = (id) => {
     return (
       <>
 
-        <section>
+        <section className="background">
         
         {this.props.reduxState.movies.map((item) =>
                 
                 <p className="card" key={item.id}>
                     <img className="imageSize"src={item.poster} alt="Movie Poster"></img>
                     <br></br>
-                    <button onClick={()=> this.goToDetails(item.id)}>{item.title}</button> 
+                    <button className="button" onClick={()=> this.goToDetails(item.id)}>{item.title}</button> 
                 </p>
 
         )}
