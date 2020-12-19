@@ -1,35 +1,39 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import './Detail.css';
 
 class Detail extends Component {
-  
+
   render() {
-   
+
     return (
       <>
-        <h1>Detail Component</h1>
         <section>
-        
-        {this.props.reduxState.movies.map((item) =>
-                
-                <p key={item.id}>
 
-                    <img src={item.poster} alt={item.title}></img>
-                    <br></br>
-                    {item.title} 
-                    <br></br>
-                    {item.description}
-                </p>
 
-        )}
 
-        {this.props.reduxState.genres.map((genre) => 
-          <p>
-              {genre.name}
 
-          </p>
-        )}
+          {this.props.reduxState.movies.map((item) =>
+
+            <div className="size" key={item.id}>
+
+
+              <img className="poster" src={item.poster} alt={item.title}></img>
+              <div className="container">
+                <h3>{item.title}</h3>
+                <br></br>
+                {this.props.reduxState.genres.map((genre) =>
+                  <p className="genreList">
+                    {genre.name}
+                  </p>
+                )}
+
+                <p>{item.description}</p>
+              </div>
+            </div>
+
+          )}
+
 
         </section>
       </>
@@ -37,7 +41,7 @@ class Detail extends Component {
   }
 }
 
-const mapReduxStateToProps = (reduxState) => ({reduxState});
-  
+const mapReduxStateToProps = (reduxState) => ({ reduxState });
+
 
 export default connect(mapReduxStateToProps)(Detail);
