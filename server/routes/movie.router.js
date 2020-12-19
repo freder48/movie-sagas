@@ -54,17 +54,20 @@ router.get('/', (req, res) => {
       });   
 }); // END GET Route
 
-//GET ALL MOVIES
+//get details 
 router.get('/:id', (req, res) => {
   let id = req.params.id;
   // Get all of the movies from the database
-  const sqlText = `SELECT * FROM movies ORDER BY title WHERE id=$1`;
+  const sqlText = `SELECT * , genres.name FROM movies
+  JOIN movie_genre ON movies.id = movie_genre.movie_id
+  JOIN genres ON genres.id = movie_genre.genre_id
+  WHERE movies.id= $1;`;
   //pool is the database, here we are sending the query to the database, running a query similar to a command in Postico
-  pool.query(sqlText)
+  pool.query(sqlText, [id])
       .then((result) => {
           res.send(result.rows); 
       })
-      .catch((error) => {s
+      .catch((error) => {
           console.log(`Error making database query in GET ${sqlText}`, error);
           res.sendStatus(500);
       });   

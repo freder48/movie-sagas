@@ -23,7 +23,6 @@ class App extends Component {
           <Route path="/form" component={movieForm}/>
           
         </Router>
-        <p>Empty Page</p>
       </div>
     );
   }

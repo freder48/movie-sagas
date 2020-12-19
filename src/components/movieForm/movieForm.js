@@ -8,6 +8,9 @@ class movieForm extends Component {
     return (
       <>
         <h1>movieForm Component</h1>
+        <form>
+          <label>Movie:</label>
+        </form>
       </>
     );
   }
