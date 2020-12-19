@@ -17,6 +17,7 @@ function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchMovies);
     yield takeEvery('FETCH_DETAILS', fetchDetails);
     yield takeEvery('FETCH_CATEGORY', fetchCategory);
+    yield takeEvery('ADD_MOVIE', addMovie);
 }
 
 // Create sagaMiddleware
@@ -29,6 +30,16 @@ const movies = (state = [], action) => {
             return action.payload;
         default:
             return state;
+    }
+}
+
+function* addMovie( action ) {
+    console.log('index post', action.payload);
+    try { 
+        yield axios.post('/api/movie', action.payload)
+        yield put({ type: 'FETCH_MOVIES' }) 
+    } catch (error) {
+        console.log('error with add movie request', error);
     }
 }
 
