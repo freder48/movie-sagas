@@ -24,6 +24,13 @@ class Detail extends Component {
 
         )}
 
+        {this.props.reduxState.genres.map((genre) => 
+          <p>
+              {genre.name}
+
+          </p>
+        )}
+
         </section>
       </>
     );

@@ -14,8 +14,9 @@ import { takeEvery, put } from 'redux-saga/effects';
 
 // Create the rootSaga generator function
 function* rootSaga() {
-    yield takeEvery('FETCH_MOVIES', fetchMovies)
-    yield takeEvery('FETCH_DETAILS', fetchDetails)
+    yield takeEvery('FETCH_MOVIES', fetchMovies);
+    yield takeEvery('FETCH_DETAILS', fetchDetails);
+    yield takeEvery('FETCH_CATEGORY', fetchCategory);
 }
 
 // Create sagaMiddleware
@@ -30,6 +31,20 @@ const movies = (state = [], action) => {
             return state;
     }
 }
+
+function* fetchCategory(action) {
+    try { 
+        const response = yield axios.get(`/api/genre/${action.payload}`)
+        // inside a saga, use 'put' to dispatch an action (no props)
+        // This is SET - update the redux store
+        // DON'T do another FETCH or you'll get an infinite loop
+        yield put ({ type: 'SET_GENRES', payload: response.data});
+        console.log(response.data);
+        
+    } catch (error) {
+        console.log('error with movies get request', error);
+    }
+}//end fetchMovies
 
 //start fetchMovies GET
 function* fetchDetails(action) {

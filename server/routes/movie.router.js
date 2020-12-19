@@ -58,10 +58,7 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   let id = req.params.id;
   // Get all of the movies from the database
-  const sqlText = `SELECT * , genres.name FROM movies
-  JOIN movie_genre ON movies.id = movie_genre.movie_id
-  JOIN genres ON genres.id = movie_genre.genre_id
-  WHERE movies.id= $1;`;
+  const sqlText = `SELECT * FROM movies WHERE id=$1`;
   //pool is the database, here we are sending the query to the database, running a query similar to a command in Postico
   pool.query(sqlText, [id])
       .then((result) => {
