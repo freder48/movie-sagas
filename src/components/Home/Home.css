@@ -17,7 +17,7 @@
    
   }
   
-  .imageSize {
+.imageSize {
     height: 300px;
     width: 200px;
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
@@ -25,7 +25,7 @@
     
   }
 
-  .button {
+.button {
     color: black !important;
     text-transform: uppercase;
     text-decoration: none;
@@ -35,11 +35,12 @@
     display: inline-block;
     transition: all 0.4s ease 0s;
     width: 92%;
-    }
+    font-family: Copperplate;
+  }
 
-    .button:hover {
-        color: #ffffff !important;
-        background: goldenrod;
-        border-color: #132639 !important;
-        transition: all 0.4s ease 0s;
-        }
+.button:hover {
+    color: #ffffff !important;
+    background: goldenrod;
+    border-color: #132639 !important;
+    transition: all 0.4s ease 0s;
+  }

@@ -8,15 +8,11 @@ class Detail extends Component {
 
     return (
       <>
-        <section>
-
-
-
+        <section className="containerAll">
 
           {this.props.reduxState.movies.map((item) =>
 
             <div className="size" key={item.id}>
-
 
               <img className="poster" src={item.poster} alt={item.title}></img>
               <div className="container">
@@ -33,7 +29,6 @@ class Detail extends Component {
             </div>
 
           )}
-
 
         </section>
       </>

@@ -18,7 +18,7 @@ function* rootSaga() {
     yield takeEvery('FETCH_DETAILS', fetchDetails);
     yield takeEvery('FETCH_CATEGORY', fetchCategory);
     yield takeEvery('ADD_MOVIE', addMovie);
-}
+}//end rootSaga
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
@@ -33,54 +33,46 @@ const movies = (state = [], action) => {
     }
 }
 
-function* addMovie( action ) {
-    console.log('index post', action.payload);
-    try { 
+//used post input information from movieForm
+function* addMovie(action) {
+    // console.log('index post', action.payload);
+    try {
         yield axios.post('/api/movie', action.payload)
-        yield put({ type: 'FETCH_MOVIES' }) 
+        yield put({ type: 'FETCH_MOVIES' })
     } catch (error) {
         console.log('error with add movie request', error);
     }
-}
+}//end addMovie
 
+//Getting all of the categories for one specific movie id
 function* fetchCategory(action) {
-    try { 
+    try {
         const response = yield axios.get(`/api/genre/${action.payload}`)
-        // inside a saga, use 'put' to dispatch an action (no props)
-        // This is SET - update the redux store
-        // DON'T do another FETCH or you'll get an infinite loop
-        yield put ({ type: 'SET_GENRES', payload: response.data});
+        yield put({ type: 'SET_GENRES', payload: response.data });
         console.log(response.data);
-        
     } catch (error) {
-        console.log('error with movies get request', error);
+        console.log('error with genre get request', error);
     }
-}//end fetchMovies
+}//end fetchCategory
 
-//start fetchMovies GET
+//start fetchDetails - GETs all details for specific movie id 
 function* fetchDetails(action) {
-    try { 
+    try {
         const response = yield axios.get(`/api/movie/${action.payload}`)
-        // inside a saga, use 'put' to dispatch an action (no props)
-        // This is SET - update the redux store
-        // DON'T do another FETCH or you'll get an infinite loop
-        yield put ({ type: 'SET_MOVIES', payload: response.data});
+        yield put({ type: 'SET_MOVIES', payload: response.data });
     } catch (error) {
         console.log('error with movies get request', error);
     }
-}//end fetchMovies
+}//end fetchDetails
 
-//start fetchMovies GET
+//start fetchMovies GETs ALL movie information
 function* fetchMovies() {
     // Move GET request from App.js
     console.log('in fetchMovies saga');
     // Go to server, update redux store with data from server
-    try { 
+    try {
         const response = yield axios.get('/api/movie')
-        // inside a saga, use 'put' to dispatch an action (no props)
-        // This is SET - update the redux store
-        // DON'T do another FETCH or you'll get an infinite loop
-        yield put ({ type: 'SET_MOVIES', payload: response.data});
+        yield put({ type: 'SET_MOVIES', payload: response.data });
     } catch (error) {
         console.log('error with movies get request', error);
     }
@@ -109,6 +101,6 @@ const storeInstance = createStore(
 // Pass rootSaga into our sagaMiddleware
 sagaMiddleware.run(rootSaga);
 
-ReactDOM.render(<Provider store={storeInstance}><App /></Provider>, 
+ReactDOM.render(<Provider store={storeInstance}><App /></Provider>,
     document.getElementById('root'));
 registerServiceWorker();

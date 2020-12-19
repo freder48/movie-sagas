@@ -2,12 +2,10 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool')
 
-//GET ALL GENRES
+//GET all genres for specific movie id
 router.get('/:id', (req, res) => {
   let id = req.params.id;
-  console.log(id);
-  
-  // Get all of the movies from the database
+  // Get the genre names where movie.id = the id in req.params.id
   const sqlText = `SELECT name FROM "genres" 
   JOIN "movie_genre" ON genres.id = movie_genre.genre_id
   JOIN "movies" ON movie_genre.movie_id = movies.id
@@ -16,7 +14,6 @@ router.get('/:id', (req, res) => {
   pool.query(sqlText, [id])
       .then((result) => {
           res.send(result.rows); 
-          
       })
       .catch((error) => {
           console.log(`Error making database query in GET ${sqlText}`, error);

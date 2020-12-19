@@ -4,20 +4,22 @@ import './movieForm.css';
 
 
 class movieForm extends Component {
-
+ //local state
   state = {
     movie: {
-      title: '', 
-      poster: '', 
+      title: '',
+      poster: '',
       description: '',
-      genre_id: '', 
+      genre_id: '',
     }
   }
 
+  //routes back to home on cancel button
   goToHome = () => {
     this.props.history.push('/')
   }
 
+  //sets local state with values from input boxex
   handleChange = (inputValue, event) => {
     event.preventDefault();
     this.setState({
@@ -25,13 +27,13 @@ class movieForm extends Component {
         ...this.state.movie,
         [inputValue]: event.target.value
       }
-    })
-  }
+    })//end setState
+  }//end handleChange
 
+  //on submit button dispatch to saga (index.js) to run post route 
   addMovie = () => {
-    this.props.dispatch({type: 'ADD_MOVIE',payload: this.state})
-    this.props.dispatch({type: 'ADD_GENRE',payload: this.state})
-  }
+    this.props.dispatch({ type: 'ADD_MOVIE', payload: this.state })
+  }//end addMovie
 
 
   render() {
@@ -39,16 +41,19 @@ class movieForm extends Component {
       <div className="border">
         <form id="colorForm">
           <label >Movie Title:</label>
-          <input onChange={(event) => this.handleChange('title', event)}type="text" />
-          
+          <input onChange={(event) => this.handleChange('title', event)} 
+          type="text" />
+
           <label>Poster URL:</label>
-          <input onChange={(event) => this.handleChange('poster', event)} type="text" />
+          <input onChange={(event) => this.handleChange('poster', event)} 
+          type="text" />
 
           <label>Description:</label>
           <textarea onChange={(event) => this.handleChange('description', event)} />
 
           <label>Genre:</label>
-          <select name="category" id="category" onChange={(event) => this.handleChange('genre_id', event)}>
+          <select name="category" id="category" 
+          onChange={(event) => this.handleChange('genre_id', event)}>
             <option>Select</option>
             <option value="1">Documentary</option>
             <option value="2">Thriller</option>
@@ -70,10 +75,14 @@ class movieForm extends Component {
 
           </select>
 
-          <button className="button"onClick={this.addMovie}>Submit</button>
+          <button className="button" 
+          onClick={this.addMovie}>Submit</button>
+
+          <button className="button" 
+          onClick={this.goToHome}>Cancel</button>
+  
         </form>
-        <button className="button" onClick={this.goToHome}>Cancel</button>
-        
+
       </div>
     );
   }

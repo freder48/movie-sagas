@@ -1,19 +1,16 @@
 form {
-
   width: 80%;
   height: 50vh;
   display: grid;
   align-items: center;
   justify-items: center;
   margin: auto;
-
 }
 
 label, input, textarea {
   display: block;
   width: 80%;
   padding-bottom: .5em;
-
 }
 
 textarea {
@@ -26,6 +23,7 @@ input, textarea {
   padding-left: 5px;
   outline: none;
   border-bottom: 5px solid #132639;
+  background: #ffe6cc;
 } 
 
 .border {
@@ -35,7 +33,6 @@ input, textarea {
     padding: .5em;
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
-
 
 .button {
     color: black !important;
@@ -47,19 +44,21 @@ input, textarea {
     display: inline-block;
     transition: all 0.4s ease 0s;
     width: 15em;
-    }
+}
 
-    .button:hover {
-        color: #ffffff !important;
-        background: goldenrod;
-        border-color: #132639 !important;
-        transition: all 0.4s ease 0s;
-        }
+.button:hover {
+    color: #ffffff !important;
+    background: goldenrod;
+    border-color: #132639 !important;
+    transition: all 0.4s ease 0s;
+}
 
 select {
     width: 40%;
    border: 3px solid #132639;
    margin-bottom: 20px;
    padding: 5px;
+   background: #132639;
+   color: goldenrod;
 }
 

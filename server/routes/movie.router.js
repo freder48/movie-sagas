@@ -12,13 +12,13 @@ router.post('/', (req, res) => {
 
   // FIRST QUERY MAKES MOVIE
   pool.query(insertMovieQuery, [req.body.movie.title, req.body.movie.poster, req.body.movie.description])
-  .then(result => {
-    console.log('New Movie Id:', result.rows[0].id); //ID IS HERE!
-    
-    const createdMovieId = result.rows[0].id
+    .then(result => {
+      console.log('New Movie Id:', result.rows[0].id); //ID IS HERE!
 
-    // Depending on how you make your junction table, this insert COULD change.
-    const insertMovieGenreQuery = `
+      const createdMovieId = result.rows[0].id
+
+      // Depending on how you make your junction table, this insert COULD change.
+      const insertMovieGenreQuery = `
       INSERT INTO "movie_genre" ("movie_id", "genre_id")
       VALUES  ($1, $2);
       `
@@ -32,11 +32,11 @@ router.post('/', (req, res) => {
         res.sendStatus(500)
       })
 
-// Catch for first query
-  }).catch(err => {
-    console.log(err);
-    res.sendStatus(500)
-  })
+      // Catch for first query
+    }).catch(err => {
+      console.log(err);
+      res.sendStatus(500)
+    })
 })
 
 //GET ALL MOVIES
@@ -45,29 +45,29 @@ router.get('/', (req, res) => {
   const sqlText = `SELECT * FROM movies ORDER BY title`;
   //pool is the database, here we are sending the query to the database, running a query similar to a command in Postico
   pool.query(sqlText)
-      .then((result) => {
-          res.send(result.rows); 
-      })
-      .catch((error) => {s
-          console.log(`Error making database query in GET ${sqlText}`, error);
-          res.sendStatus(500);
-      });   
+    .then((result) => {
+      res.send(result.rows);
+    })
+    .catch((error) => {
+      s
+      console.log(`Error making database query in GET ${sqlText}`, error);
+      res.sendStatus(500);
+    });
 }); // END GET Route
 
-//get details 
+//Get movie details for specific movie id
 router.get('/:id', (req, res) => {
   let id = req.params.id;
-  // Get all of the movies from the database
   const sqlText = `SELECT * FROM movies WHERE id=$1`;
   //pool is the database, here we are sending the query to the database, running a query similar to a command in Postico
   pool.query(sqlText, [id])
-      .then((result) => {
-          res.send(result.rows); 
-      })
-      .catch((error) => {
-          console.log(`Error making database query in GET ${sqlText}`, error);
-          res.sendStatus(500);
-      });   
+    .then((result) => {
+      res.send(result.rows);
+    })
+    .catch((error) => {
+      console.log(`Error making database query in GET ${sqlText}`, error);
+      res.sendStatus(500);
+    });
 }); // END GET Route
 
 module.exports = router;

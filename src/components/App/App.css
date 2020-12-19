@@ -1,4 +1,4 @@
-* {
+body {
   background-image: url('../../img/paper.jpg')
 }
 .App {
@@ -22,7 +22,6 @@ h1 {
   letter-spacing: 1px;
 }
 
-
 h1 {
   background-image: url(https://media.giphy.com/media/26BROrSHlmyzzHf3i/giphy.gif);
   background-size: cover;
@@ -35,9 +34,6 @@ h1 {
   margin: 10px 0;
 }
 
-
-
-
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
@@ -48,14 +44,14 @@ nav li {
   display: inline-block;
   margin-right: 2em;
   color: black;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: Copperplate, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 .navBar {
   padding-top: 1em;
   padding-bottom: 1.5em;
-  margin-bottom: 2em;
-  
+  margin-bottom: 1em;
+  font-size: 20px;
 }
 
 a:link{
@@ -69,7 +65,6 @@ a:visited {
 
 a:active {
   text-decoration: underline;
-  
 }
 
 a:hover {
