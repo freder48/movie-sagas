@@ -30,6 +30,8 @@ const movies = (state = [], action) => {
     switch (action.type) {
         case 'SET_MOVIES':
             return action.payload;
+        case 'SET_SEARCH':
+            return action.payload;
         default:
             return state;
     }
@@ -40,9 +42,9 @@ function* fetchSearch(action) {
     console.log('in fetch search saga');
     try {
         const response = yield axios.get(`/api/movie/search/${action.payload}`)
-        yield put({ type: 'SET_MOVIES', payload: response.data });
+        yield put({ type: 'SET_SEARCH', payload: response.data });
     } catch (error) {
-        console.log('error with movies get request', error);
+        console.log('error with search get request', error);
     }
 }//end fetchDetails
 

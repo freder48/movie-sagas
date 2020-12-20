@@ -36,9 +36,8 @@ This is an application that demonstrates the use of react-redux, joining databas
 
 1. Users can click on the movie title buttons on the home page to see the details of that movie.
 2. Users can click the edit button on the details page to change the movie title and description.
-3. Click on the Add Movie link to direct to a form to submit a new movie to list
-
-
+3. Click on the Add Movie link to direct to a form to submit a new movie to list.
+4. Click on the Search link to search for a specific movie in this list. 
 
 ## Built With
 

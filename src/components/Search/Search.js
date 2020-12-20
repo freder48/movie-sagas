@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './Home.css';
+import './Search.css';
 
-class Home extends Component {
+class Search extends Component {
+    //local state
+    state = {
+        search: '',
+    }
 
     //start componentDidMount
     componentDidMount() {
@@ -20,6 +24,21 @@ class Home extends Component {
         this.props.dispatch({ type: 'FETCH_CATEGORY', payload: id });
     }//end goToDetails
 
+    //on search button dispatch to fetch_search saga
+    searchMovie = () => {
+        this.props.dispatch({ type: 'FETCH_SEARCH', payload: this.state.search });
+        console.log(this.state.search);
+        
+        this.setState({ search: '' });
+        
+    }
+
+    //set local state with input boxes
+    handleChange = (event) => {
+        this.setState({
+            search: event.target.value
+        })
+    }
 
     render() {
         return (
@@ -27,6 +46,10 @@ class Home extends Component {
             <>
 
                 <section className="background">
+                    <section className="searchContainer">
+                    <input value={this.state.search} onChange={this.handleChange} className="homeInput" type="text" />
+                    <button className="button homeBtn" onClick={this.searchMovie}>Search</button>
+                    </section>
                     {this.props.reduxState.movies.map((item) =>
 
                         <p className="card" key={item.id}>
@@ -50,4 +73,4 @@ class Home extends Component {
 
 const mapReduxStateToProps = (reduxState) => ({ reduxState });
 
-export default connect(mapReduxStateToProps)(Home);
+export default connect(mapReduxStateToProps)(Search);

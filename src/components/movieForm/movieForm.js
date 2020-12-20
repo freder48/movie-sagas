@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import './movieForm.css';
 
 
+
 class movieForm extends Component {
  //local state
   state = {

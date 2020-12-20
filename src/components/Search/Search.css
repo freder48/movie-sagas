@@ -46,7 +46,8 @@
   }
 
   .searchContainer {
-    float: center;
+    width: 100%;
+   
    
   }
 
@@ -54,4 +55,8 @@
     text-align: center;
     margin: auto;
     margin-bottom: 10px;
+  }
+
+  .homeBtn {
+    width: 20%;
   }
