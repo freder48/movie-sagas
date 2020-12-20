@@ -58,6 +58,8 @@ router.get('/', (req, res) => {
 //Get movie details for specific movie id
 router.get('/:id', (req, res) => {
   let id = req.params.id;
+  console.log('GET SPECIFIC MOVIE', id);
+  
   const sqlText = `SELECT * FROM movies WHERE id=$1`;
   //pool is the database, here we are sending the query to the database, running a query similar to a command in Postico
   pool.query(sqlText, [id])
@@ -69,5 +71,24 @@ router.get('/:id', (req, res) => {
       res.sendStatus(500);
     });
 }); // END GET Route
+
+//PUT ROUTE - change movie details
+router.put('/:id', (req, res) => {
+  let edit = req.body;
+  console.log('req.body' ,req.body);
+  
+  let id = req.params.id; // identify which item to update
+  console.log('id:', id);
+  
+  let sqlText = `UPDATE "movies" SET "title" =$1, "description" =$2 WHERE "id" = $3;`
+  pool.query(sqlText, [edit.title, edit.description, id]) 
+      .then((result) => { 
+          res.sendStatus(200); 
+      })
+      .catch( (error) => {
+          console.log('Error from db...', error);
+          res.sendStatus(500);
+      })
+})
 
 module.exports = router;

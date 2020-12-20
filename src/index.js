@@ -18,6 +18,7 @@ function* rootSaga() {
     yield takeEvery('FETCH_DETAILS', fetchDetails);
     yield takeEvery('FETCH_CATEGORY', fetchCategory);
     yield takeEvery('ADD_MOVIE', addMovie);
+    yield takeEvery('UPDATE_MOVIE', updateMovie)
 }//end rootSaga
 
 // Create sagaMiddleware
@@ -32,6 +33,21 @@ const movies = (state = [], action) => {
             return state;
     }
 }
+
+//PUT ROUTE used post input information from movieForm
+function* updateMovie(action) {
+    console.log('In UPDATE MOVIE');
+    
+    console.log('Action Payload', action.payload);
+    
+    // console.log('index post', action.payload);
+    try {
+        yield axios.put(`/api/movie/${action.payload.id}`, action.payload)
+        yield put({ type: 'SET_MOVIES'});
+    } catch (error) {
+        console.log('error with put movie request', error);
+    }
+}//end updateMovie
 
 //used post input information from movieForm
 function* addMovie(action) {
@@ -57,6 +73,8 @@ function* fetchCategory(action) {
 
 //start fetchDetails - GETs all details for specific movie id 
 function* fetchDetails(action) {
+    console.log('EDIT PAYLOAD', action.payload);
+    
     try {
         const response = yield axios.get(`/api/movie/${action.payload}`)
         yield put({ type: 'SET_MOVIES', payload: response.data });
