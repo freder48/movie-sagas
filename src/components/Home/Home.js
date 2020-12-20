@@ -4,6 +4,10 @@ import './Home.css';
 
 class Home extends Component {
 
+    state = {
+        search: '', 
+    }
+
     //start componentDidMount
     componentDidMount() {
         //dispatch to sagas to get all movies on page load
@@ -20,13 +24,26 @@ class Home extends Component {
         this.props.dispatch({ type: 'FETCH_CATEGORY', payload: id });
     }//end goToDetails
 
+searchMovie = () => {
+        this.props.dispatch({ type: 'FETCH_SEARCH', payload: this.state.search });
+    }
+
+handleChange = (event) => {
+    this.setState({
+        search: event.target.value
+      })    
+}
+
     render() {
         return (
             //Map through movies reducer to get movie info from movies database
             <>
 
                 <section className="background">
-                    
+
+                <input onChange={this.handleChange} className="homeInput"type="text"/>
+                    <button onClick={this.searchMovie}>Search</button>
+
                     {this.props.reduxState.movies.map((item) =>
 
                         <p className="card" key={item.id}>

@@ -91,4 +91,20 @@ router.put('/:id', (req, res) => {
       })
 })
 
+//GET ALL MOVIES
+router.get('/search/:search', (req, res) => {
+  let search = req.params.search
+  // Get all the movies where search is true
+  const sqlText = `SELECT * FROM movies WHERE title ILIKE '%' || $1 || '%';`;
+  //pool is the database, here we are sending the query to the database, running a query similar to a command in Postico
+  pool.query(sqlText, [search])
+    .then((result) => {
+      res.send(result.rows);
+    })
+    .catch((error) => {
+      console.log(`Error making database query in SEARCH GET ${sqlText}`, error);
+      res.sendStatus(500);
+    });
+}); // END GET Route
+
 module.exports = router;

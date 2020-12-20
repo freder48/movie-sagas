@@ -40,7 +40,9 @@ updateDetails = (event, id) => {
                     onChange={(event) => this.handleChange('title', event)}/>
 
                     <label className="editLabel">Edit Description:</label>
-                    <textarea value={this.props.reduxState.movies[0].description} className="editInput" onChange={(event) => this.handleChange('description', event)} />
+                    <textarea value={this.props.reduxState.movies[0].description} 
+                    className="editInput" 
+                    onChange={(event) => this.handleChange('description', event)} />
                 
                 <section>
                     <button className="button editBtn"
