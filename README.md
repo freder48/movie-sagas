@@ -11,6 +11,8 @@ Duration: 12 hours
 
 This is an application that demonstrates the use of react-redux, joining databases, and working with sagas. The example topic is movies. Users can view a display of all movies on the home page and then be directed to the details page of a movie after clicking the button. Users can also add and edit movies utilizing the appropriate forms. 
 
+See the deployed app on [Heroku]('https://young-scrubland-90358.herokuapp.com/#/')
+
 ## Screen Shot
 
 ![image](./public/images/screen1.png)
