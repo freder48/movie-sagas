@@ -3,10 +3,15 @@ import './Edit.css';
 import { connect } from 'react-redux';
 
 class Edit extends Component {
+componenentDidMount = () => {
+    this.props.dispatch({ type: 'FETCH_DETAILS', payload: this.props.match.params.id });
+    this.props.dispatch({ type: 'FETCH_CATEGORY', payload: this.props.match.params.id });
+    
+}
 
-goToDetails = () => {
+goToDetails = (id) => {
         
-        this.props.history.push(`/detail/:id`)
+        this.props.history.push(`/detail/${id}`)
     }
 
 //sets local state with values from input boxex
@@ -20,9 +25,7 @@ goToDetails = () => {
   }//end handleChange
 
 updateDetails = (event, id) => {
-   
     this.props.dispatch({type: 'UPDATE_MOVIE', payload: this.props.reduxState.movies[0]})
-
     this.props.dispatch({ type: 'FETCH_DETAILS', payload: id });
     this.props.dispatch({ type: 'FETCH_CATEGORY', payload: id });
     this.props.history.push(`/detail/:id`)
@@ -46,7 +49,7 @@ updateDetails = (event, id) => {
                 
                 <section>
                     <button className="button editBtn"
-                        onClick={this.goToDetails}>
+                        onClick={() => this.goToDetails(movie.id)}>
                         Cancel
                   </button>
                     <button onClick={(event) => this.updateDetails(event, movie.id)}className="button editBtn">
