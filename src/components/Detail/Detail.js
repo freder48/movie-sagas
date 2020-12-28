@@ -4,10 +4,16 @@ import './Detail.css';
 
 class Detail extends Component {
 
+  componentDidMount = (id) => {
+    this.props.dispatch({type: 'FETCH_DETAILS', payload: this.props.match.params.id})
+    this.props.dispatch({type: 'FETCH_CATEGORY', payload: this.props.match.params.id })
+  }
+
   goToEdit = (id) => {
     // this.props.dispatch({type: 'GET_INPUTS', payload: item })
     this.props.dispatch({type: 'FETCH_DETAILS', payload: id})
-    
+    this.props.dispatch({type: 'FETCH_CATEGORY', payload: id})
+  
     this.props.history.push('/edit')
   }
 
